@@ -85,11 +85,11 @@ module.exports.loop = function () {
         Game.spawns['Markopolis'].spawnCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], newName, {memory: {role: 'harvester'}});
     }
     
-    var remoteHarvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'remoteHarvester');
-    if(remoteHarvesters.length < 2) {
+    var remoteHarvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'stevenHarvester');
+    if(remoteHarvesters.length < 3) {
         var newName = 'StevenHarvester' + Game.time;
         console.log('Spawning new steven harvester: ' + newName);
-        Game.spawns['Stevenopolis'].spawnCreep([WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], newName, {memory: {role: 'remoteHarvester'}});
+        Game.spawns['Stevenopolis'].spawnCreep([WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], newName, {memory: {role: 'remoteHarvester'}});
     }
     
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
@@ -182,7 +182,7 @@ module.exports.loop = function () {
             }
             roleHarvester.run(creep);
         }
-        if(creep.memory.role == 'remoteHarvester') {
+        if(creep.memory.role == 'stevenHarvester') {
             if(creep.ticksToLive < ticksToLive){
                 ticksToLive = creep.ticksToLive;
                 creepName = 'steven harvester';

@@ -89,7 +89,7 @@ module.exports.loop = function () {
     if(remoteHarvesters.length < 3) {
         var newName = 'StevenHarvester' + Game.time;
         console.log('Spawning new steven harvester: ' + newName);
-        Game.spawns['Stevenopolis'].spawnCreep([WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], newName, {memory: {role: 'remoteHarvester'}});
+        Game.spawns['Stevenopolis'].spawnCreep([WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], newName, {memory: {role: 'stevenHarvester'}});
     }
     
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');

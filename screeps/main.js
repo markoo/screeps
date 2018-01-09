@@ -182,7 +182,7 @@ module.exports.loop = function () {
             }
             roleHarvester.run(creep);
         }
-        if(creep.memory.role == 'stevenHarvester') {
+        if(creep.memory.role == 'stevenHarvester'|| creep.memory.role == 'remoteHarvester') {
             if(creep.ticksToLive < ticksToLive){
                 ticksToLive = creep.ticksToLive;
                 creepName = 'steven harvester';

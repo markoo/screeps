@@ -49,23 +49,29 @@ var roleRemoteBuilder = {
             **/
 	    }
 	    else {
-	        var sources = creep.room.find(FIND_SOURCES);
-            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
-            }
+	    //     var sources = creep.room.find(FIND_SOURCES);
+        //     if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+        //         creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
+        //     }
 
-        //if(!sources[1].energy){
-            var theStorage = creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
-                filter: (structure) => {;
-                    return (structure.structureType == STRUCTURE_STORAGE );
-                }
-            });
+        // //if(!sources[1].energy){
+        //     var theStorage = creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
+        //         filter: (structure) => {;
+        //             return (structure.structureType == STRUCTURE_STORAGE );
+        //         }
+        //     });
             
-            if ( creep.withdraw(theStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo( theStorage );
-            }
+        //     if ( creep.withdraw(theStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+        //         creep.moveTo( theStorage );
+        //     }
 
-        //}
+        // //}
+            const source = creep.pos.findClosestByRange(FIND_SOURCES_ACTIVE);
+            if (source) {
+                if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(source);
+                }
+            }
 
 	    }
 	}

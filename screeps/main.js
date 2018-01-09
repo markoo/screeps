@@ -107,7 +107,7 @@ module.exports.loop = function () {
     }
     
     var remoteUpgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'remoteUpgrader');
-    if(remoteUpgraders.length < 1) {
+    if(remoteUpgraders.length < 0) {
         var newName = 'RemoteUpgrader' + Game.time;
         console.log('Spawning new remote upgrader: ' + newName);
         Game.spawns['Markopolis'].spawnCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], newName, {memory: {role: 'remoteUpgrader'}});

@@ -5,7 +5,7 @@ var roleBuilder = require('role.builder');
 var roleRemoteBuilder = require('role.remoteBuilder');
 var roleTransfer = require('role.transfer');
 var roleDefender = require('role.defender');
-
+// this is an edit from github... :)
 module.exports.loop = function () {
 
     var link1 = Game.getObjectById('5a4bc9cd5205d31f94eff4a0');

@@ -29,14 +29,21 @@ var roleHarvester = {
                     }
                 });
                 if (spawn) {
-                    var target = creep.pos.findClosestByRange(FIND_STRUCTURES, {
-                        filter: (structure) => {
-                            return structure.structureType == STRUCTURE_STORAGE;
+                    // var target = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+                    //     filter: (structure) => {
+                    //         return structure.structureType == STRUCTURE_STORAGE;
+                    //     }
+                    // });
+                    // if (creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                    //     creep.moveTo(target, { visualizePathStyle: { stroke: '#ffaa00' } });
+                    // }
+                    const source = creep.pos.findClosestByRange(FIND_SOURCES_ACTIVE);
+                    if (source) {
+                        if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(source);
                         }
-                    });
-                    if (creep.withdraw(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(target, { visualizePathStyle: { stroke: '#ffaa00' } });
                     }
+    
                 } else {
                     if (creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(sources[1], { visualizePathStyle: { stroke: '#ffaa00' } });

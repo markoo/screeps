@@ -88,15 +88,15 @@ var roleHarvester = {
                         structure.energy == structure.energyCapacity;
                 }
             });
-            // var theStorage = creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
-            //     filter: (structure) => {
-            //         return (structure.structureType == STRUCTURE_STORAGE);
-            //     }
-            // });
+            var theStorage = creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
+                filter: (structure) => {
+                    return (structure.structureType == STRUCTURE_STORAGE);
+                }
+            });
 
-            // if (creep.transfer(theStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            //     creep.moveTo(theStorage);
-            // }
+            if (creep.transfer(theStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(theStorage);
+            }
 
         }
     }

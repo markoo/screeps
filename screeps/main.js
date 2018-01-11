@@ -5,9 +5,12 @@ var roleBuilder = require('role.builder');
 var roleRemoteBuilder = require('role.remoteBuilder');
 var roleTransfer = require('role.transfer');
 var roleDefender = require('role.defender');
+require('./constants');
 
 module.exports.loop = function () {
 
+    console.log('builders: ', BUILDERS_DESIRED);
+    
     var link1 = Game.getObjectById('5a4bc9cd5205d31f94eff4a0');
     var link2 = Game.getObjectById('5a4a4f5561a2956b4526d967');
     if(link1.energy == link1.energyCapacity && link2.energy == 0){

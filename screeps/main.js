@@ -86,7 +86,6 @@ module.exports.loop = function () {
             console.log('Spawning new '+Game.spawns[i].name+' harvester: ' + newName);
             Game.spawns[Game.spawns[i].name].spawnCreep(HARVESTERS_BODY[Game.spawns[i].name], newName, {memory: {role: Game.spawns[i].name+'harvester'}});
         }
-        console.log('spawn: ', Game.spawns[i].name);
     }
 
     // var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');

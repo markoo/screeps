@@ -165,7 +165,7 @@ module.exports.loop = function () {
     if(Game.spawns['Markopolis'].spawning) { 
         var spawningCreep = Game.creeps[Game.spawns['Markopolis'].spawning.name];
         Game.spawns['Markopolis'].room.visual.text(
-            'ð ï¸' + spawningCreep.memory.role,
+            '...' + spawningCreep.memory.role,
             Game.spawns['Markopolis'].pos.x + 1, 
             Game.spawns['Markopolis'].pos.y, 
             {align: 'left', opacity: 0.8});

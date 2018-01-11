@@ -186,7 +186,7 @@ module.exports.loop = function () {
     var creepName = '';
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
-        if(creep.memory.role == 'harvester'|| creep.memory.role == 'MarkopolisHarvester') {
+        if(creep.memory.role == 'harvester'|| creep.memory.role == 'Markopolisharvester') {
             if(creep.ticksToLive < ticksToLive){
                 ticksToLive = creep.ticksToLive;
                 creepName = 'harvester';

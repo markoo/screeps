@@ -9,6 +9,6 @@ global.HARVESTERS_BODY = {
 }
 
 global.WALL_STRENGTH = {
-    'Markopolis':   WALL_HITS_MAX-125000,
-    'Stevenopolis': WALL_HITS_MAX- 50000,
+    'Markopolis':   WALL_HITS_MAX-126000,
+    'Stevenopolis': WALL_HITS_MAX- 51000,
 }

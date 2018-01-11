@@ -20,7 +20,7 @@ module.exports.loop = function () {
     var tower3 = Game.getObjectById('5a50f5995a6691658f702230');
 
     var towers = Game.rooms[roomName].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
-    for(var id in towers)
+    for(var id in towers) {
         var closestDamagedStructure = towers[id].pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (structure) => structure.hits < (structure.hitsMax - WALL_STRENGTH['Markopolis'])
         });

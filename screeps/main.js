@@ -15,40 +15,38 @@ module.exports.loop = function () {
         link1.transferEnergy(link2);
     }
 
-    var tower = Game.getObjectById('5a459bf723e4857334f9fa2f');
-    var tower2 = Game.getObjectById('5a4a90ae1ecdb2318ade003a');
+    // var tower = Game.getObjectById('5a459bf723e4857334f9fa2f');
+    // var tower2 = Game.getObjectById('5a4a90ae1ecdb2318ade003a');
     var tower3 = Game.getObjectById('5a50f5995a6691658f702230');
-    const wallEnergy = 299875000;
 
-    if(tower) {
-        var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) => structure.hits < (structure.hitsMax - wallEnergy)
+    var towers = Game.rooms[roomName].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
+    for(var id in towers)
+        var closestDamagedStructure = towers[id].pos.findClosestByRange(FIND_STRUCTURES, {
+            filter: (structure) => structure.hits < (structure.hitsMax - WALL_STRENGTH['Markopolis'])
         });
         if(closestDamagedStructure) {
-            tower.repair(closestDamagedStructure);
+            towers[id].repair(closestDamagedStructure);
         }
-
-        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+        var closestHostile = towers[id].pos.findClosestByRange(FIND_HOSTILE_CREEPS);
         if(closestHostile) {
-            tower.attack(closestHostile);
+            towers[id].attack(closestHostile);
             Game.notify('Attacked by hostile in Markopolis: ', closestHostile);
         }
     }
 
-    if(tower2) {
-        var closestDamagedStructure = tower2.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) => structure.hits < (structure.hitsMax - wallEnergy)
-        });
-        if(closestDamagedStructure) {
-            tower2.repair(closestDamagedStructure);
-        }
-
-        var closestHostile = tower2.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-        if(closestHostile) {
-            tower2.attack(closestHostile);
-            Game.notify('Attacked by hostile in Markopolis: ', closestHostile);
-        }
-    }
+    // if(tower2) {
+    //     var closestDamagedStructure = tower2.pos.findClosestByRange(FIND_STRUCTURES, {
+    //         filter: (structure) => structure.hits < (structure.hitsMax - WALL_STRENGTH['Markopolis'])
+    //     });
+    //     if(closestDamagedStructure) {
+    //         tower2.repair(closestDamagedStructure);
+    //     }
+    //     var closestHostile = tower2.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+    //     if(closestHostile) {
+    //         tower2.attack(closestHostile);
+    //         Game.notify('Attacked by hostile in Markopolis: ', closestHostile);
+    //     }
+    // }
 
     if(tower3) {
         var defenders = _.filter(Game.creeps, (creep) => creep.memory.role == 'defender' && creep.hits < creep.hitsMax);
@@ -57,7 +55,7 @@ module.exports.loop = function () {
         }
 
         var closestDamagedStructure = tower3.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) => structure.hits < (structure.hitsMax - 299950000)
+            filter: (structure) => structure.hits < (structure.hitsMax - WALL_STRENGTH['Stevenopolis'])
         });
         if(closestDamagedStructure) {
             tower3.repair(closestDamagedStructure);
@@ -79,7 +77,7 @@ module.exports.loop = function () {
     }
 
 
-    for(const i in Game.spawns){
+    for(const i in Game.spawns) {
         var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == Game.spawns[i].name+'harvester');
         if(harvesters.length < HARVESTERS_DESIRED[Game.spawns[i].name]) {
             var newName = Game.spawns[i].name+'Harvester' + Game.time;
@@ -88,20 +86,6 @@ module.exports.loop = function () {
         }
     }
 
-    // var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-    // if(harvesters.length < 1) {
-    //     var newName = 'Harvester' + Game.time;
-    //     console.log('Spawning new harvester: ' + newName);
-    //     Game.spawns['Markopolis'].spawnCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], newName, {memory: {role: 'harvester'}});
-    // }
-    
-    // var remoteHarvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'stevenHarvester');
-    // if(remoteHarvesters.length < 2) {
-    //     var newName = 'StevenHarvester' + Game.time;
-    //     console.log('Spawning new steven harvester: ' + newName);
-    //     Game.spawns['Stevenopolis'].spawnCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE], newName, {memory: {role: 'stevenHarvester'}});
-    // }
-    
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     if(upgraders.length < Memory.upgraders) {
         var newName = 'Upgrader' + Game.time;

@@ -80,7 +80,7 @@ module.exports.loop = function () {
 
 
     for(const i in Game.spawns){
-        var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == Game.spawns[i].name+'Harvester');
+        var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == Game.spawns[i].name+'harvester');
         if(harvesters.length < HARVESTERS_DESIRED[Game.spawns[i].name]) {
             var newName = Game.spawns[i].name+'Harvester' + Game.time;
             console.log('Spawning new '+Game.spawns[i].name+' harvester: ' + newName);
@@ -193,7 +193,7 @@ module.exports.loop = function () {
             }
             roleHarvester.run(creep);
         }
-        if(creep.memory.role == 'stevenHarvester'|| creep.memory.role == 'remoteHarvester'|| creep.memory.role == 'StevenopolisHarvester') {
+        if(creep.memory.role == 'stevenHarvester'|| creep.memory.role == 'remoteHarvester'|| creep.memory.role == 'Stevenopolisharvester') {
             if(creep.ticksToLive < ticksToLive){
                 ticksToLive = creep.ticksToLive;
                 creepName = 'steven harvester';

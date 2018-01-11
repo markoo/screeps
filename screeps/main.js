@@ -9,8 +9,6 @@ require('./constants');
 
 module.exports.loop = function () {
 
-    console.log('builders: ', BUILDERS_DESIRED);
-
     var link1 = Game.getObjectById('5a4bc9cd5205d31f94eff4a0');
     var link2 = Game.getObjectById('5a4a4f5561a2956b4526d967');
     if(link1.energy == link1.energyCapacity && link2.energy == 0){
@@ -188,14 +186,14 @@ module.exports.loop = function () {
     var creepName = '';
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
-        if(creep.memory.role == 'harvester') {
+        if(creep.memory.role == 'harvester'|| creep.memory.role == 'MarkopolisHarvester') {
             if(creep.ticksToLive < ticksToLive){
                 ticksToLive = creep.ticksToLive;
                 creepName = 'harvester';
             }
             roleHarvester.run(creep);
         }
-        if(creep.memory.role == 'stevenHarvester'|| creep.memory.role == 'remoteHarvester') {
+        if(creep.memory.role == 'stevenHarvester'|| creep.memory.role == 'remoteHarvester'|| creep.memory.role == 'StevenopolisHarvester') {
             if(creep.ticksToLive < ticksToLive){
                 ticksToLive = creep.ticksToLive;
                 creepName = 'steven harvester';

@@ -1,4 +1,3 @@
-global.HARVESTERS_DESIRED = 1;
 global.HARVESTERS_DESIRED = {
     'Markopolis': '1',
     'Stevenopolis': '2',

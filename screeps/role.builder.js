@@ -5,11 +5,11 @@ var roleBuilder = {
 
 	    if(creep.memory.building && creep.carry.energy == 0) {
             creep.memory.building = false;
-            creep.say('🔄 harvest');
+            creep.say('ð harvest');
 	    }
 	    if(!creep.memory.building && creep.carry.energy == creep.carryCapacity) {
 	        creep.memory.building = true;
-	        creep.say('🚧 build');
+	        creep.say('ð§ build');
 	    }
         
 	    if(creep.memory.building) {
@@ -21,7 +21,7 @@ var roleBuilder = {
                 }
             }else{
             
-                var ramparts = _.filter(Game.structures, (structure) => structure.structureType == STRUCTURE_RAMPART && structure.hits < (structure.hitsMax-29960000));
+                var ramparts = _.filter(Game.structures, (structure) => structure.structureType == STRUCTURE_RAMPART && structure.hits < (structure.hitsMax-29930000));
                 if(ramparts.length) {
                     if(creep.repair(ramparts[0]) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(ramparts[0], {visualizePathStyle: {stroke: '#ffffff'}});

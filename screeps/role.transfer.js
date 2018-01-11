@@ -35,21 +35,38 @@ var roleTransfer = {
         }
         else {
             if (target) {
-                var theStorage = creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
-                    filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_STORAGE);
+                var dropenergy = creep.pos.findClosestByPath(FIND_DROPPED_RESOURCES, {
+                filter: (d) => {return (d.resourceType == RESOURCE_ENERGY)}});
+                if (dropenergy) {
+                if (creep.pickup(dropenergy) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(dropenergy)
+                }
+                }else{
+                    var theStorage = creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
+                        filter: (structure) => {
+                            return (structure.structureType == STRUCTURE_STORAGE);
+                        }
+                    });
+    
+                    if (creep.withdraw(theStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(theStorage);
                     }
-                });
-
-                if (creep.withdraw(theStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(theStorage);
                 }
             } else {
+                                var dropenergy = creep.pos.findClosestByPath(FIND_DROPPED_RESOURCES, {
+                filter: (d) => {return (d.resourceType == RESOURCE_ENERGY)}});
+                if (dropenergy) {
+                if (creep.pickup(dropenergy) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(dropenergy)
+                }
+                }else{
+
                 const source = creep.pos.findClosestByRange(FIND_SOURCES_ACTIVE);
                 if (source) {
                     if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(source);
                     }
+                }
                 }
             }
         }

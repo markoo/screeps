@@ -17,7 +17,7 @@ module.exports.loop = function () {
     var tower = Game.getObjectById('5a459bf723e4857334f9fa2f');
     var tower2 = Game.getObjectById('5a4a90ae1ecdb2318ade003a');
     var tower3 = Game.getObjectById('5a50f5995a6691658f702230');
-    const wallEnergy = 299880000;
+    const wallEnergy = 299875000;
 
     if(tower) {
         var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
@@ -50,13 +50,13 @@ module.exports.loop = function () {
     }
 
     if(tower3) {
-        var defenders = _.filter(Game.creeps, (creep) => creep.memory.role == 'defender');
+        var defenders = _.filter(Game.creeps, (creep) => creep.memory.role == 'defender' && creep.hits < creep.hitsMax);
         if(defenders[0]) {
-            //tower3.heal(defenders[0]);
+            tower3.heal(defenders[0]);
         }
 
         var closestDamagedStructure = tower3.pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) => structure.hits < (structure.hitsMax - 299968000)
+            filter: (structure) => structure.hits < (structure.hitsMax - 299950000)
         });
         if(closestDamagedStructure) {
             tower3.repair(closestDamagedStructure);
@@ -86,10 +86,10 @@ module.exports.loop = function () {
     }
     
     var remoteHarvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'stevenHarvester');
-    if(remoteHarvesters.length < 3) {
+    if(remoteHarvesters.length < 2) {
         var newName = 'StevenHarvester' + Game.time;
         console.log('Spawning new steven harvester: ' + newName);
-        Game.spawns['Stevenopolis'].spawnCreep([WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], newName, {memory: {role: 'stevenHarvester'}});
+        Game.spawns['Stevenopolis'].spawnCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE], newName, {memory: {role: 'stevenHarvester'}});
     }
     
     var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
@@ -100,10 +100,10 @@ module.exports.loop = function () {
     }
     
     var stevenUpgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'stevenUpgrader');
-    if(stevenUpgraders.length < 2) {
+    if(stevenUpgraders.length < Memory.stevenUpgraders) {
         var newName = 'StevenUpgrader' + Game.time;
         console.log('Spawning new steven upgrader: ' + newName);
-        Game.spawns['Stevenopolis'].spawnCreep([WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], newName, {memory: {role: 'stevenUpgrader'}});
+        Game.spawns['Stevenopolis'].spawnCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE], newName, {memory: {role: 'stevenUpgrader'}});
     }
     
     var remoteUpgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'remoteUpgrader');
@@ -124,7 +124,7 @@ module.exports.loop = function () {
     if(stevenBuilders.length < 1) {
         var newName = 'StevenBuilder' + Game.time;
         console.log('Spawning new steven builder: ' + newName);
-        Game.spawns['Stevenopolis'].spawnCreep([WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], newName, {memory: {role: 'stevenBuilder'}});
+        Game.spawns['Stevenopolis'].spawnCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE], newName, {memory: {role: 'stevenBuilder'}});
     }
     
     var remoteBuilders = _.filter(Game.creeps, (creep) => creep.memory.role == 'remoteBuilder');
@@ -146,7 +146,7 @@ module.exports.loop = function () {
     if(stevenTransfers.length < 1) {
         var newName = 'StevenTransfer' + Game.time;
         console.log('Spawning new steven transfer: ' + newName);
-        Game.spawns['Stevenopolis'].spawnCreep([WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE], newName, {memory: {role: 'stevenTransfer'}});
+        Game.spawns['Stevenopolis'].spawnCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE], newName, {memory: {role: 'stevenTransfer'}});
     }
     
     
@@ -165,7 +165,7 @@ module.exports.loop = function () {
     if(Game.spawns['Markopolis'].spawning) { 
         var spawningCreep = Game.creeps[Game.spawns['Markopolis'].spawning.name];
         Game.spawns['Markopolis'].room.visual.text(
-            '🛠️' + spawningCreep.memory.role,
+            'ð ï¸' + spawningCreep.memory.role,
             Game.spawns['Markopolis'].pos.x + 1, 
             Game.spawns['Markopolis'].pos.y, 
             {align: 'left', opacity: 0.8});
@@ -196,6 +196,7 @@ module.exports.loop = function () {
                 ticksToLive = creep.ticksToLive;
                 creepName = 'builder';
             }
+            //roleTransfer.run(creep);
             roleBuilder.run(creep);
         }
         if(creep.memory.role == 'stevenBuilder') {
@@ -204,7 +205,7 @@ module.exports.loop = function () {
                 creepName = 'steven builder';
             }
             //roleHarvester.run(creep);
-            roleBuilder.run(creep);
+            roleRemoteBuilder.run(creep);
             //roleRemoteBuilder.run(creep);
         }
         if(creep.memory.role == 'remoteBuilder') {
@@ -268,16 +269,18 @@ module.exports.loop = function () {
             }
             //creep.moveTo(26,32);
             
-            var posInAnotherRoom = new RoomPosition(21, 27, 'W43N2');
+            var posInAnotherRoom = new RoomPosition(24, 28, 'W43N2');
             creep.moveTo(posInAnotherRoom);
 
             roleDefender.run(creep);
         }
     }
-    if(ticksToLive>300){
-        Memory.upgraders = 1;
+    if(ticksToLive>200){
+        Memory.upgraders = 2;
+        Memory.stevenUpgraders = 2;
     }else{
         Memory.upgraders = 1;
+        Memory.stevenUpgraders = 1;
     }
     console.log('ticksToLive: ' + ticksToLive + ', ' + creepName);
 }

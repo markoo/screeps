@@ -78,11 +78,11 @@ module.exports.loop = function () {
 
 
     for(const i in Game.spawns) {
-        var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == Game.spawns[i].name+'harvester');
+        var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == Game.spawns[i].name+'Harvester');
         if(harvesters.length < HARVESTERS_DESIRED[Game.spawns[i].name]) {
             var newName = Game.spawns[i].name+'Harvester' + Game.time;
-            console.log('Spawning new '+Game.spawns[i].name+' harvester: ' + newName);
-            Game.spawns[Game.spawns[i].name].spawnCreep(HARVESTERS_BODY[Game.spawns[i].name], newName, {memory: {role: Game.spawns[i].name+'harvester'}});
+            console.log('Spawning new '+Game.spawns[i].name+' Harvester: ' + newName);
+            Game.spawns[Game.spawns[i].name].spawnCreep(HARVESTERS_BODY[Game.spawns[i].name], newName, {memory: {role: Game.spawns[i].name+'Harvester'}});
         }
     }
 
@@ -165,47 +165,43 @@ module.exports.loop = function () {
             {align: 'left', opacity: 0.8});
     }
 
-    var ticksToLive = 1500;
-    var creepName = '';
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
-        if(creep.memory.role == 'harvester'|| creep.memory.role == 'Markopolisharvester') {
-            if(creep.ticksToLive < ticksToLive){
-                ticksToLive = creep.ticksToLive;
-                creepName = 'harvester';
+        if(creep.memory.role == 'harvester' || creep.memory.role == 'Markopolisharvester' || creep.memory.role == 'MarkopolisHarvester' || creep.memory.role == 'stevenHarvester'|| creep.memory.role == 'remoteHarvester' || creep.memory.role == 'Stevenopolisharvester' || creep.memory.role == 'StevenopolisHarvester') {
+            if(creep.memory.role.tolower().indexOf('steven') > -1){
+                if(creep.ticksToLive < TICKS_TO_LIVE['Stevenopolis']){
+                    TICKS_TO_LIVE['Stevenopolis'] = creep.ticksToLive;
+                    CREEP_NAME['Stevenopolis'] = creep.memory.role;
+                }
+            }else{
+                if(creep.ticksToLive < TICKS_TO_LIVE['Markopolis']){
+                    TICKS_TO_LIVE['Markopolis'] = creep.ticksToLive;
+                    CREEP_NAME['Markopolis'] = creep.memory.role;
+                }
             }
             roleHarvester.run(creep);
-        }
-        if(creep.memory.role == 'stevenHarvester'|| creep.memory.role == 'remoteHarvester'|| creep.memory.role == 'Stevenopolisharvester') {
-            if(creep.ticksToLive < ticksToLive){
-                ticksToLive = creep.ticksToLive;
-                creepName = 'steven harvester';
-            }
-            roleHarvester.run(creep);
-            //roleUpgrader.run(creep);
-            //roleRemoteBuilder.run(creep);
         }
         if(creep.memory.role == 'builder') {
-            if(creep.ticksToLive < ticksToLive){
-                ticksToLive = creep.ticksToLive;
-                creepName = 'builder';
+            if(creep.ticksToLive < TICKS_TO_LIVE['Markopolis']){
+                TICKS_TO_LIVE['Markopolis'] = creep.ticksToLive;
+                CREEP_NAME['Markopolis'] = 'builder';
             }
             //roleTransfer.run(creep);
             roleBuilder.run(creep);
         }
         if(creep.memory.role == 'stevenBuilder') {
-            if(creep.ticksToLive < ticksToLive){
-                ticksToLive = creep.ticksToLive;
-                creepName = 'steven builder';
+            if(creep.ticksToLive < TICKS_TO_LIVE){
+                TICKS_TO_LIVE['Stevenopolis'] = creep.ticksToLive;
+                CREEP_NAME['Stevenopolis'] = 'steven builder';
             }
             //roleHarvester.run(creep);
             roleRemoteBuilder.run(creep);
             //roleRemoteBuilder.run(creep);
         }
         if(creep.memory.role == 'remoteBuilder') {
-            if(creep.ticksToLive < ticksToLive){
-                ticksToLive = creep.ticksToLive;
-                creepName = 'remote builder';
+            if(creep.ticksToLive < TICKS_TO_LIVE['Markopolis']){
+                TICKS_TO_LIVE['Markopolis'] = creep.ticksToLive;
+                CREEP_NAME['Markopolis'] = 'remote builder';
             }
             if(creep.room.name != 'W43N2'){
                 var posInAnotherRoom = new RoomPosition(26, 11, 'W43N2');
@@ -215,24 +211,24 @@ module.exports.loop = function () {
             }
         }
         if(creep.memory.role == 'upgrader') {
-            if(creep.ticksToLive < ticksToLive){
-                ticksToLive = creep.ticksToLive;
-                creepName = 'upgrader';
+            if(creep.ticksToLive < TICKS_TO_LIVE['Markopolis']){
+                TICKS_TO_LIVE['Markopolis'] = creep.ticksToLive;
+                CREEP_NAME['Markopolis'] = 'upgrader';
             }
             roleUpgrader.run(creep);
         }
         if(creep.memory.role == 'stevenUpgrader') {
-            if(creep.ticksToLive < ticksToLive){
-                ticksToLive = creep.ticksToLive;
-                creepName = 'steven upgrader';
+            if(creep.ticksToLive < TICKS_TO_LIVE['Stevenopolis']){
+                TICKS_TO_LIVE['Stevenopolis'] = creep.ticksToLive;
+                CREEP_NAME['Stevenopolis'] = 'steven upgrader';
             }
             //roleHarvester.run(creep);
             roleRemoteUpgrader.run(creep);
         }
         if(creep.memory.role == 'remoteUpgrader') {
-            if(creep.ticksToLive < ticksToLive){
-                ticksToLive = creep.ticksToLive;
-                creepName = 'remoteUpgrader';
+            if(creep.ticksToLive < TICKS_TO_LIVE['Markopolis']){
+                TICKS_TO_LIVE['Markopolis'] = creep.ticksToLive;
+                CREEP_NAME['Markopolis'] = 'remoteUpgrader';
             }
             if(creep.room.name != 'W43N2'){
                 var posInAnotherRoom = new RoomPosition(26, 11, 'W43N2');
@@ -242,39 +238,41 @@ module.exports.loop = function () {
             }
         }
         if(creep.memory.role == 'transfer') {
-            if(creep.ticksToLive < ticksToLive){
-                ticksToLive = creep.ticksToLive;
-                creepName = 'transfer';
+            if(creep.ticksToLive < TICKS_TO_LIVE['Markopolis']){
+                TICKS_TO_LIVE['Markopolis'] = creep.ticksToLive;
+                CREEP_NAME['Markopolis'] = 'transfer';
             }
             roleTransfer.run(creep);
         }
         if(creep.memory.role == 'stevenTransfer') {
-            if(creep.ticksToLive < ticksToLive){
-                ticksToLive = creep.ticksToLive;
-                creepName = 'steven transfer';
+            if(creep.ticksToLive < TICKS_TO_LIVE){
+                TICKS_TO_LIVE['Stevenopolis'] = creep.ticksToLive;
+                CREEP_NAME['Stevenopolis'] = 'steven transfer';
             }
             //roleTransfer.run(creep);
             roleTransfer.run(creep);
         }
         if(creep.memory.role == 'defender') {
-            if(creep.ticksToLive < ticksToLive){
-                ticksToLive = creep.ticksToLive;
-                creepName = 'defender';
+            if(creep.ticksToLive < TICKS_TO_LIVE['Markopolis']){
+                TICKS_TO_LIVE['Markopolis'] = creep.ticksToLive;
+                CREEP_NAME['Markopolis'] = 'defender';
             }
-            //creep.moveTo(26,32);
-            
             var posInAnotherRoom = new RoomPosition(24, 28, 'W43N2');
             creep.moveTo(posInAnotherRoom);
 
             roleDefender.run(creep);
         }
     }
-    if(ticksToLive>200){
+    if(TICKS_TO_LIVE['Markopolis']>200){
         Memory.upgraders = 2;
-        Memory.stevenUpgraders = 2;
     }else{
         Memory.upgraders = 1;
+    }
+    if(TICKS_TO_LIVE['Stevenopolis']>200){
+        Memory.stevenUpgraders = 2;
+    }else{
         Memory.stevenUpgraders = 1;
     }
-    console.log('ticksToLive: ' + ticksToLive + ', ' + creepName);
+    console.log('TICKS_TO_LIVE: ' + TICKS_TO_LIVE['Markopolis'] + ',   ' + CREEP_NAME['Markopolis']);
+    console.log('TICKS_TO_LIVE: ' + TICKS_TO_LIVE['Stevenopolis'] + ', ' + CREEP_NAME['Stevenopolis']);
 }

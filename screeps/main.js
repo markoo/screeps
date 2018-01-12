@@ -63,8 +63,8 @@ module.exports.loop = function () {
 
         var closestHostile = tower3.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
         if(closestHostile) {
-        console.log('hostile: ', tower.attack(closestHostile));
-            tower.attack(closestHostile);
+        console.log('hostile: ', tower3.attack(closestHostile));
+            tower3.attack(closestHostile);
             Game.notify('Attacked by hostile in Stevenopolis: ', closestHostile);
         }
     }
@@ -97,7 +97,7 @@ module.exports.loop = function () {
     if(stevenUpgraders.length < Memory.stevenUpgraders) {
         var newName = 'StevenUpgrader' + Game.time;
         console.log('Spawning new steven upgrader: ' + newName);
-        Game.spawns['Stevenopolis'].spawnCreep([WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE], newName, {memory: {role: 'stevenUpgrader'}});
+        Game.spawns['Stevenopolis'].spawnCreep([WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE], newName, {memory: {role: 'stevenUpgrader'}});
     }
     
     var remoteUpgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'remoteUpgrader');

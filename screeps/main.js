@@ -168,7 +168,7 @@ module.exports.loop = function () {
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
         if(creep.memory.role == 'harvester' || creep.memory.role == 'Markopolisharvester' || creep.memory.role == 'MarkopolisHarvester' || creep.memory.role == 'stevenHarvester'|| creep.memory.role == 'remoteHarvester' || creep.memory.role == 'Stevenopolisharvester' || creep.memory.role == 'StevenopolisHarvester') {
-            if(creep.memory.role.tolower().indexOf('steven') > -1){
+            if(creep.memory.role.toLowerCase().indexOf('steven') > -1){
                 if(creep.ticksToLive < TICKS_TO_LIVE['Stevenopolis']){
                     TICKS_TO_LIVE['Stevenopolis'] = creep.ticksToLive;
                     CREEP_NAME['Stevenopolis'] = creep.memory.role;

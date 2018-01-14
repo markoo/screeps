@@ -199,7 +199,7 @@ module.exports.loop = function () {
                 creepNameSt = 'steven builder';
             }
             //roleHarvester.run(creep);
-            roleRemoteBuilder.run(creep);
+            roleBuilder.run(creep);
             //roleRemoteBuilder.run(creep);
         }
         if(creep.memory.role == 'remoteBuilder') {

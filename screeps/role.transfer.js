@@ -10,15 +10,27 @@ var roleTransfer = {
         }
         var target = creep.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (structure) => {
-                return (structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_TOWER || structure.structureType == STRUCTURE_LINK) &&
+                return (structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_EXTENSION) &&
+                    structure.energy < structure.energyCapacity;
+            }
+        });
+        var secondary = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+            filter: (structure) => {
+                return (structure.structureType == STRUCTURE_TOWER || (structure.structureType == STRUCTURE_LINK && structure.id =='5a5a104b93afa519f70be0fe') || (structure.structureType == STRUCTURE_LINK && structure.id =='5a4bc9cd5205d31f94eff4a0')) &&
                     structure.energy < structure.energyCapacity;
             }
         });
 
         if (creep.memory.transfering) {
-            if (target) {
-                if (creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(target, { visualizePathStyle: { stroke: '#ffffff' } });
+            if (target || secondary) {
+                if(target){
+                    if (creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(target, { visualizePathStyle: { stroke: '#ffffff' } });
+                    }
+                }else{
+                    if (creep.transfer(secondary, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(secondary, { visualizePathStyle: { stroke: '#ffffff' } });
+                    }
                 }
             } else {
                 var theStorage = creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
@@ -34,7 +46,7 @@ var roleTransfer = {
             }
         }
         else {
-            if (target) {
+            if (target || secondary) {
                 var dropenergy = creep.pos.findClosestByPath(FIND_DROPPED_RESOURCES, {
                 filter: (d) => {return (d.resourceType == RESOURCE_ENERGY)}});
                 if (dropenergy) {
@@ -53,7 +65,7 @@ var roleTransfer = {
                     }
                 }
             } else {
-                                var dropenergy = creep.pos.findClosestByPath(FIND_DROPPED_RESOURCES, {
+                var dropenergy = creep.pos.findClosestByPath(FIND_DROPPED_RESOURCES, {
                 filter: (d) => {return (d.resourceType == RESOURCE_ENERGY)}});
                 if (dropenergy) {
                 if (creep.pickup(dropenergy) == ERR_NOT_IN_RANGE) {

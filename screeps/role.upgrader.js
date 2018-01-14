@@ -15,14 +15,17 @@ if(creep.memory.upgrading && creep.carry.energy == 0) {
         }
     }
     else {
-        var sources = creep.room.find(FIND_SOURCES);
-        if(creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(sources[1]);
+        if(room=='W43N3'){
+            var sources = creep.room.find(FIND_SOURCES);
+            if(creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(sources[1]);
+            }
+        }else{
         }
-        if(!sources[1].energy){
+        if(!sources[1].energy || room=='W43N2'){
             var theStorage = creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
                 filter: (structure) => {
-                    return (structure.id == '5a4a4f5561a2956b4526d967' || structure.structureType == STRUCTURE_STORAGE);
+                    return (structure.structureType == STRUCTURE_LINK || structure.structureType == STRUCTURE_STORAGE);
                 }
             });
             

@@ -17,7 +17,7 @@ var roleRemoteUpgrader = {
         else {
             var target = creep.pos.findClosestByRange(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return ((structure.structureType == STRUCTURE_LINK && structure.store[RESOURCE_ENERGY] > 0) ||
+                    return ((structure.structureType == STRUCTURE_LINK && structure.energy > 0) ||
                             (structure.structureType == STRUCTURE_CONTAINER && structure.store[RESOURCE_ENERGY] > 0));
                 }
             });

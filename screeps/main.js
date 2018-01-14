@@ -39,19 +39,19 @@ module.exports.loop = function () {
     for(var id in towers) {
         var defenders = _.filter(Game.creeps, (creep) => creep.memory.role == 'defender' && creep.hits < creep.hitsMax);
         if(defenders[0]) {
-            towers.heal(defenders[0]);
+            towers[id].heal(defenders[0]);
         }
 
-        var closestDamagedStructure = towers.pos.findClosestByRange(FIND_STRUCTURES, {
+        var closestDamagedStructure = towers[id].pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (structure) => structure.hits < (structure.hitsMax - WALL_STRENGTH['Stevenopolis'])
         });
         if(closestDamagedStructure) {
-            towers.repair(closestDamagedStructure);
+            towers[id].repair(closestDamagedStructure);
         }
 
-        var closestHostile = towers.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+        var closestHostile = towers[id].pos.findClosestByRange(FIND_HOSTILE_CREEPS);
         if(closestHostile) {
-            towers.attack(closestHostile);
+            towers[id].attack(closestHostile);
             Game.notify('Attacked by hostile in Stevenopolis: ', closestHostile);
         }
     }
@@ -203,19 +203,19 @@ module.exports.loop = function () {
                 roleRemoteBuilder.run(creep);
             }
         }
-        if(creep.memory.role == 'upgrader' || reep.memory.role == 'stevenUpgrader' || creep.memory.role == 'MarkopolisUpgrader' || creep.memory.role == 'StevenopolisUpgrader' ) {
+        if(creep.memory.role == 'upgrader' || creep.memory.role == 'stevenUpgrader' || creep.memory.role == 'MarkopolisUpgrader' || creep.memory.role == 'StevenopolisUpgrader' ) {
             if(creep.memory.role.toLowerCase().indexOf('steven') > -1){
                 if(creep.ticksToLive < ticksToLiveSt){
                     ticksToLiveSt = creep.ticksToLive;
                     creepNameSt = creep.memory.role;
-                    roleRemoteUpgrader.run(creep);
                 }
+                    roleRemoteUpgrader.run(creep);
             }else{
                 if(creep.ticksToLive < ticksToLiveMa){
                     ticksToLiveMa = creep.ticksToLive;
                     creepNameMa = creep.memory.role;
-                    roleUpgrader.run(creep);
                 }
+                    roleUpgrader.run(creep);
             }
         }
         if(creep.memory.role == 'remoteUpgrader') {

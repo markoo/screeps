@@ -2,7 +2,10 @@ global.HARVESTERS_DESIRED = {
     'Markopolis':   1,
     'Stevenopolis': 2,
 }
-    
+global.UPGRADERS_DESIRED = {
+    'Markopolis':   2,
+    'Stevenopolis': 2,
+}
 global.HARVESTERS_BODY = {
     'Markopolis':   [WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE],
     'Stevenopolis': [WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE],

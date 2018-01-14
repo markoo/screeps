@@ -31,3 +31,7 @@ global.WALL_STRENGTH = {
     'Markopolis':   WALL_HITS_MAX-128000,
     'Stevenopolis': WALL_HITS_MAX- 97000,
 }
+global.RAMPART_STRENGTH = {
+    'W43N2': 10000000-71000,
+    'W43N3': 30000000-71000,
+}

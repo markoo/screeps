@@ -9,15 +9,13 @@ require('./constants');
 
 module.exports.loop = function () {
 
-    var link1 = Game.getObjectById('5a4bc9cd5205d31f94eff4a0');
-    var link2 = Game.getObjectById('5a4a4f5561a2956b4526d967');
-    if(link1.energy == link1.energyCapacity && link2.energy == 0){
-        link1.transferEnergy(link2);
+    var links = Game.rooms['W43N3'].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_LINK}});
+    if(links[1].energy == links[1].energyCapacity && links[0].energy == 0){
+        links[1].transferEnergy(links[0]);
     }
-    var link3 = Game.getObjectById('5a5a104b93afa519f70be0fe');
-    var link4 = Game.getObjectById('5a5a30995dba65589ef3536f');
-    if(link3.energy == link1.energyCapacity && link4.energy == 0){
-        link3.transferEnergy(link4);
+    links = Game.rooms['W43N2'].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_LINK}});
+    if(links[0].energy == links[0].energyCapacity && links[1].energy == 0){
+        links[0].transferEnergy(links[1]);
     }
 
     var towers = Game.rooms['W43N3'].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});

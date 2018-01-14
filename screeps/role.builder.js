@@ -13,28 +13,21 @@ var roleBuilder = {
 	    }
         
 	    if(creep.memory.building) {
-	        
 	        var target = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);
             if(target) {
                 if(creep.build(target) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
                 }
             }else{
-            
-                var ramparts = _.filter(Game.structures, (structure) => structure.structureType == STRUCTURE_RAMPART && structure.hits < (structure.hitsMax-29930000));
-                if(ramparts.length) {
-                    if(creep.repair(ramparts[0]) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(ramparts[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                var roads = creep.pos.findClosestByRange(FIND_STRUCTURES, { filter: function(object){ 
+                    return (object.structureType === STRUCTURE_ROAD && (object.hits < object.hitsMax)) ||
+                           (object.structureType == STRUCTURE_RAMPART && (object.hits < object.hitsMax-RAMPART_STRENGTH[creep.room.name]))
+                }});
+                if(roads) {
+                    if(creep.repair(roads) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(roads, {visualizePathStyle: {stroke: '#ffffff'}});
                     }
                 }
-                
-                var roads = creep.room.find(FIND_STRUCTURES, { filter: function(object){ return object.structureType === STRUCTURE_ROAD && (object.hits < object.hitsMax)}});
-                if(roads.length) {
-                    if(creep.repair(roads[0]) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(roads[0], {visualizePathStyle: {stroke: '#ffffff'}});
-                    }
-                }
-                
             }
 	    }
 	    else {

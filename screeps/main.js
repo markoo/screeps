@@ -2,7 +2,6 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleRemoteUpgrader = require('role.remoteUpgrader');
 var roleBuilder = require('role.builder');
-var roleRemoteBuilder = require('role.remoteBuilder');
 var roleTransfer = require('role.transfer');
 var roleDefender = require('role.defender');
 require('./constants');
@@ -209,7 +208,7 @@ module.exports.loop = function () {
                 var posInAnotherRoom = new RoomPosition(26, 11, 'W43N2');
                 creep.moveTo(posInAnotherRoom);
             }else{
-                roleRemoteBuilder.run(creep);
+                roleBuilder.run(creep);
             }
         }
         if(creep.memory.role == 'upgrader' || creep.memory.role == 'stevenUpgrader' || creep.memory.role == 'MarkopolisUpgrader' || creep.memory.role == 'StevenopolisUpgrader' ) {

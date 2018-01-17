@@ -9,7 +9,7 @@ var roleMiner = {
             creep.memory.mining = true;
         }
 
-        if (!creep.memory.mining) {
+        if (creep.memory.mining) {
             var target;
 
             if (creep.memory.depositId) {

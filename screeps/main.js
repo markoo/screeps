@@ -26,9 +26,17 @@ module.exports.loop = function () {
             towers[id].repair(closestDamagedStructure);
         }
         var closestHostile = towers[id].pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-        if(closestHostile) {
+        const healer = towers[id].pos.findClosestByRange(FIND_HOSTILE_CREEPS, {
+            filter: function(object) {
+                return object.getActiveBodyparts(HEAL) > 0;
+            }
+        });
+        if(healer) {
+            towers[id].attack(healer);
+            Game.notify('Attacked by hostile in Markopolis (healer): ', healer);
+        }else if(closestHostile) {
             towers[id].attack(closestHostile);
-            Game.notify('Attacked by hostile in Markopolis: ', closestHostile);
+            Game.notify('Attacked by hostile in Markopolis (invader): ', closestHostile);
         }
     }
 
@@ -47,9 +55,17 @@ module.exports.loop = function () {
         }
 
         var closestHostile = towers[id].pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-        if(closestHostile) {
+        const healer = towers[id].pos.findClosestByRange(FIND_HOSTILE_CREEPS, {
+            filter: function(object) {
+                return object.getActiveBodyparts(HEAL) > 0;
+            }
+        });
+        if(healer) {
+            towers[id].attack(healer);
+            Game.notify('Attacked by hostile in Stevenopolis: (healer) ', healer);
+        }else if(closestHostile) {
             towers[id].attack(closestHostile);
-            Game.notify('Attacked by hostile in Stevenopolis: ', closestHostile);
+            Game.notify('Attacked by hostile in Stevenopolis: (invader)', closestHostile);
         }
     }
 
@@ -147,8 +163,8 @@ module.exports.loop = function () {
             {align: 'left', opacity: 0.8});
     }
 
-    var ticksToLiveSt = 1000;
-    var ticksToLiveMa = 1000;
+    var ticksToLiveSt = 1500;
+    var ticksToLiveMa = 1500;
     var creepNameSt = '';
     var creepNameMa = '';
 

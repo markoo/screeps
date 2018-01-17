@@ -1,10 +1,10 @@
 global.HARVESTERS_DESIRED = {
     'Markopolis':   1,
-    'Stevenopolis': 2,
+    'Stevenopolis': 1,
 }
 global.UPGRADERS_DESIRED = {
-    'Markopolis':   2,
-    'Stevenopolis': 2,
+    'Markopolis':   1,
+    'Stevenopolis': 1,
 }
 global.DEFENDERS_DESIRED = {
     'Markopolis':   1,
@@ -28,8 +28,8 @@ global.DEFENDERS_BODY = {
                      MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],
 }
 global.WALL_STRENGTH = {
-    'Markopolis':   WALL_HITS_MAX-128000,
-    'Stevenopolis': WALL_HITS_MAX- 97000,
+    'Markopolis':   WALL_HITS_MAX-139000,
+    'Stevenopolis': WALL_HITS_MAX-118000,
 }
 global.RAMPART_STRENGTH = {
     'W43N2': 10000000-71000,

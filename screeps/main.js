@@ -1,4 +1,5 @@
 var roleHarvester = require('role.harvester');
+var roleMiner = require('role.miner');
 var roleUpgrader = require('role.upgrader');
 var roleRemoteUpgrader = require('role.remoteUpgrader');
 var roleBuilder = require('role.builder');
@@ -82,6 +83,13 @@ module.exports.loop = function () {
             var newName = Game.spawns[i].name+'Harvester' + Game.time;
             console.log('Spawning new '+Game.spawns[i].name+' Harvester: ' + newName);
             Game.spawns[Game.spawns[i].name].spawnCreep(HARVESTERS_BODY[Game.spawns[i].name], newName, {memory: {role: Game.spawns[i].name+'Harvester'}});
+        }
+
+        var miners = _.filter(Game.creeps, (creep) => creep.memory.role == Game.spawns[i].name+'Miner');
+        if(miners.length < MINERS_DESIRED[Game.spawns[i].name]) {
+            var newName = Game.spawns[i].name+'Miner' + Game.time;
+            console.log('Spawning new '+Game.spawns[i].name+' Miner: ' + newName);
+            Game.spawns[Game.spawns[i].name].spawnCreep(MINERS_BODY[Game.spawns[i].name], newName, {memory: {role: Game.spawns[i].name+'Miner'}});
         }
 
         var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == Game.spawns[i].name+'Upgrader');
@@ -183,6 +191,20 @@ module.exports.loop = function () {
                 }
             }
             roleHarvester.run(creep);
+        }
+        if(creep.memory.role == 'MarkopolisMiner' || creep.memory.role == 'StevenopolisMiner') {
+            if(creep.memory.role.toLowerCase().indexOf('steven') > -1){
+                if(creep.ticksToLive < ticksToLiveSt){
+                    ticksToLiveSt = creep.ticksToLive;
+                    creepNameSt = creep.memory.role;
+                }
+            }else{
+                if(creep.ticksToLive < ticksToLiveMa){
+                    ticksToLiveMa = creep.ticksToLive;
+                    creepNameMa = creep.memory.role;
+                }
+            }
+            roleMiner.run(creep);
         }
         if(creep.memory.role == 'defender' || creep.memory.role == 'MarkopolisDefender' || creep.memory.role == 'StevenopolisDefender') {
             if(creep.memory.role.toLowerCase().indexOf('steven') > -1){

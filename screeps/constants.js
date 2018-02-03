@@ -1,6 +1,8 @@
 global.HARVESTERS_DESIRED =        { 'Markopolis':   2, 'Stevenopolis': 2, 'Alanopolis':   2, }
 global.REMOTE_HARVESTERS_DESIRED = { 'Markopolis':   0, 'Stevenopolis': 0, }
 
+global.BUILDERS_DESIRED =          { 'Markopolis':   1, 'Stevenopolis': 1, 'Alanopolis':   1, }
+
 global.UPGRADERS_DESIRED =         { 'Markopolis':   1, 'Stevenopolis': 1, 'Alanopolis':   1, }
 global.REMOTE_UPGRADERS_DESIRED =  { 'Markopolis':   0, 'Stevenopolis': 1, }
 
@@ -14,6 +16,11 @@ global.TRANSFERERS_DESIRED =       { 'Markopolis':   1, 'Stevenopolis': 1, 'Alan
 global.MEGA_TRANSFERERS_DESIRED =  { 'Markopolis':   0, 'Stevenopolis': 1, 'Alanopolis':   0, }
 
 global.HARVESTERS_BODY = {
+    'Markopolis':   [WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],
+    'Stevenopolis': [WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],
+    'Alanopolis':   [WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],
+}
+global.BUILDERS_BODY = {
     'Markopolis':   [WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE],
     'Stevenopolis': [WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE],
     'Alanopolis':   [WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],

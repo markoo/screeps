@@ -2,7 +2,7 @@ var roleUpgrader = {
     
     /** @param {Creep} creep **/
     run: function(creep) {
-if(creep.memory.upgrading && creep.carry.energy == 0) {
+    if(creep.memory.upgrading && creep.carry.energy == 0) {
         creep.memory.upgrading = false;
     }
     if(!creep.memory.upgrading && creep.carry.energy == creep.carryCapacity) {
@@ -15,20 +15,18 @@ if(creep.memory.upgrading && creep.carry.energy == 0) {
         }
     }
     else {
-            var sources = creep.room.find(FIND_SOURCES);
-        if(creep.room.name == 'W43N3'){
-            if(creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[1]);
+        var source = creep.pos.findClosestByRange(FIND_SOURCES_ACTIVE);
+        if(source && creep.room.name == 'W43N1'){
+            if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(source);
             }
-        }else{
-        }
-        if(!sources[1].energy && creep.room.name != 'W43N2'){
-            var theStorage = creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
+        } else {
+            var theStorage = creep.pos.findClosestByRange(FIND_STRUCTURES, {
                 filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_LINK || structure.structureType == STRUCTURE_STORAGE);
+                    return ( (structure.structureType == STRUCTURE_LINK && structure.energy > 100)  || 
+                            ((structure.structureType == STRUCTURE_STORAGE || structure.structureType == STRUCTURE_CONTAINER) && structure.store[RESOURCE_ENERGY] > 300 ));
                 }
             });
-            
             if (creep.withdraw(theStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                 creep.moveTo( theStorage );
             }

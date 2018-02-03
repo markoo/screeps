@@ -23,6 +23,11 @@ var roleMiner = {
             if(creep.harvest(target) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(target);
             }
+            if (creep.room.storage && target.mineralAmount == 0) {
+                if(creep.withdraw(creep.room.storage, creep.memory.mineralType) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(creep.room.storage);
+                }
+            }
         } else {
             if(creep.room.terminal) {
                 if(creep.transfer(creep.room.terminal, creep.memory.mineralType) == ERR_NOT_IN_RANGE) {

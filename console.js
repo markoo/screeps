@@ -40,7 +40,7 @@ Game.spawns['Markopolis'].room.controller.activateSafeMode();
 
 
 
-Game.spawns['Markopolis'].room.createConstructionSite( 20, 20, STRUCTURE_TOWER );
+Game.spawns['Stevenopolis'].room.createConstructionSite( 33, 27, STRUCTURE_TOWER );
 
 
 

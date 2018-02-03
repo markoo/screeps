@@ -28,8 +28,8 @@ var roleDefender = {
         //}
         }
         else{
-            const tower = creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
-            creep.moveTo(tower);
+            //const tower = creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
+            //creep.moveTo(tower);
         }
     }
 };

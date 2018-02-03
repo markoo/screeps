@@ -11,7 +11,7 @@ global.MINERS_DESIRED =            { 'Markopolis':   0, 'Stevenopolis': 0, }
 global.CLAIMERS_DESIRED =          { 'Markopolis':   0, 'Stevenopolis': 0, }
 
 global.TRANSFERERS_DESIRED =       { 'Markopolis':   1, 'Stevenopolis': 1, 'Alanopolis':   1, }
-global.MEGA_TRANSFERERS_DESIRED =  { 'Markopolis':   0, 'Stevenopolis': 0, 'Alanopolis':   0, }
+global.MEGA_TRANSFERERS_DESIRED =  { 'Markopolis':   0, 'Stevenopolis': 1, 'Alanopolis':   0, }
 
 global.HARVESTERS_BODY = {
     'Markopolis':   [WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,WORK,CARRY,CARRY,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE,MOVE],
@@ -42,7 +42,7 @@ global.DEFENDERS_BODY = {
     'Stevenopolis': [TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,
                      RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,
                      MOVE,MOVE,MOVE,MOVE,MOVE,MOVE],
-    'Alanopolis':   [RANGED_ATTACK,MOVE,MOVE,MOVE],
+    'Alanopolis':   [RANGED_ATTACK,RANGED_ATTACK,RANGED_ATTACK,HEAL,MOVE,MOVE,MOVE],
 }
 global.CLAIMERS_BODY = {
     'Markopolis':   [TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,TOUGH,

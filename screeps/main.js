@@ -8,11 +8,10 @@ var roleTransferer = require('role.transfer');
 var roleMegaTransferer = require('role.megaTransfer');
 var roleDefender = require('role.defender');
 var roleClaimer = require('role.claimer');
+var towerDefense = require('tower.defense');
 require('./constants');
 
 module.exports.loop = function () {
-
-
     var links = Game.rooms['W43N3'].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_LINK}});
     if(links[1].energy == links[1].energyCapacity && links[0].energy == 0){
         links[1].transferEnergy(links[0]);
@@ -29,32 +28,33 @@ module.exports.loop = function () {
         links[1].transferEnergy(links[0]);
     }
 
-    var towers = Game.rooms['W43N3'].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
-    for(var id in towers) {
-        var closestDamagedStructure = towers[id].pos.findClosestByRange(FIND_STRUCTURES, {
-            filter: (structure) => structure.hits < (structure.hitsMax - WALL_STRENGTH['Markopolis'])
-        });
-        if(closestDamagedStructure) {
-            towers[id].repair(closestDamagedStructure);
-        }
-        var closestHostile = towers[id].pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-        const healer = towers[id].pos.findClosestByRange(FIND_HOSTILE_CREEPS, {
-            filter: function(object) {
-                return object.getActiveBodyparts(HEAL) > 0;
-            }
-        });
-        if(healer) {
-            towers[id].attack(healer);
-            if(healer.hits<100){
-                Game.notify('Attacked by hostile in Markopolis(healer) killed: ', healer);
-            }
-        }else if(closestHostile) {
-            towers[id].attack(closestHostile);
-            if(closestHostile.hits<100){
-                Game.notify('Attacked by hostile in Markopolis(invader) killed: ', closestHostile);
-            }
-        }
-    }
+    towerDefense.defense('W43N3', 'Markopolis');
+    // var towers = Game.rooms['W43N3'].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
+    // for(var id in towers) {
+    //     var closestDamagedStructure = towers[id].pos.findClosestByRange(FIND_STRUCTURES, {
+    //         filter: (structure) => structure.hits < (structure.hitsMax - WALL_STRENGTH['Markopolis'])
+    //     });
+    //     if(closestDamagedStructure) {
+    //         towers[id].repair(closestDamagedStructure);
+    //     }
+    //     var closestHostile = towers[id].pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+    //     const healer = towers[id].pos.findClosestByRange(FIND_HOSTILE_CREEPS, {
+    //         filter: function(object) {
+    //             return object.getActiveBodyparts(HEAL) > 0;
+    //         }
+    //     });
+    //     if(healer) {
+    //         towers[id].attack(healer);
+    //         if(healer.hits<100){
+    //             Game.notify('Attacked by hostile in Markopolis(healer) killed: ', healer);
+    //         }
+    //     }else if(closestHostile) {
+    //         towers[id].attack(closestHostile);
+    //         if(closestHostile.hits<100){
+    //             Game.notify('Attacked by hostile in Markopolis(invader) killed: ', closestHostile);
+    //         }
+    //     }
+    // }
 
     towers = Game.rooms['W43N2'].find(FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
     for(var id in towers) {

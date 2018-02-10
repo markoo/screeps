@@ -156,6 +156,15 @@ module.exports.loop = function () {
             {align: 'left', opacity: 0.8});
     }
 
+    if(Game.spawns['Thomasopolis'].spawning) { 
+        var spawningCreep = Game.creeps[Game.spawns['Thomasopolis'].spawning.name];
+        Game.spawns['Thomasopolis'].room.visual.text(
+            '...' + spawningCreep.memory.role,
+            Game.spawns['Thomasopolis'].pos.x + 1, 
+            Game.spawns['Thomasopolis'].pos.y, 
+            {align: 'left', opacity: 0.8});
+    }
+
     var ticksToLiveSt = 1500;
     var ticksToLiveMa = 1500;
     var ticksToLiveAl = 1500;

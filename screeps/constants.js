@@ -99,8 +99,8 @@ global.EMERGENCY_TRANSFERERS_BODY = {
 }
 global.WALL_STRENGTH = {
     'Markopolis':   WALL_HITS_MAX-212000,
-    'Stevenopolis': WALL_HITS_MAX-166000,
-    'Alanopolis':   WALL_HITS_MAX-100000,
+    'Stevenopolis': WALL_HITS_MAX-168000,
+    'Alanopolis':   WALL_HITS_MAX-102000,
     'thomasopolis': WALL_HITS_MAX-  1000,
 }
 global.WALL_BUILDER_STRENGTH = {

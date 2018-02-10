@@ -28,7 +28,6 @@ var roleRemoteHarvester = {
                     }
                 });
                 if (creep.transfer(theStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    console.log('3');
                     creep.moveTo(theStorage);
                 }
                 if(!theStorage){

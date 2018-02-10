@@ -15,22 +15,14 @@ var roleUpgrader = {
         }
     }
     else {
-        var source = creep.pos.findClosestByRange(FIND_SOURCES_ACTIVE);
-        if(source && creep.room.name == 'W43N1'){
-            if(creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(source);
+        var theStorage = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+            filter: (structure) => {
+                return ( (structure.structureType == STRUCTURE_LINK && structure.energy > 100)  || 
+                        ((structure.structureType == STRUCTURE_STORAGE || structure.structureType == STRUCTURE_CONTAINER) && structure.store[RESOURCE_ENERGY] > 300 ));
             }
-        } else {
-            var theStorage = creep.pos.findClosestByRange(FIND_STRUCTURES, {
-                filter: (structure) => {
-                    return ( (structure.structureType == STRUCTURE_LINK && structure.energy > 100)  || 
-                            ((structure.structureType == STRUCTURE_STORAGE || structure.structureType == STRUCTURE_CONTAINER) && structure.store[RESOURCE_ENERGY] > 300 ));
-                }
-            });
-            if (creep.withdraw(theStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo( theStorage );
-            }
-
+        });
+        if (creep.withdraw(theStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            creep.moveTo( theStorage );
         }
     }
     }

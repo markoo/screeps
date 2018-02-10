@@ -156,7 +156,7 @@ module.exports.loop = function () {
             {align: 'left', opacity: 0.8});
     }
 
-    if(Game.spawns['Thomasopolis'].spawning) { 
+    if(Game.spawns['Thomasopolis'] && Game.spawns['Thomasopolis'].spawning) { 
         var spawningCreep = Game.creeps[Game.spawns['Thomasopolis'].spawning.name];
         Game.spawns['Thomasopolis'].room.visual.text(
             '...' + spawningCreep.memory.role,

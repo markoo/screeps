@@ -165,7 +165,7 @@ module.exports.loop = function () {
 
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
-        if(creep.memory.role == 'MarkopolisHarvester' || creep.memory.role == 'StevenopolisHarvester' || creep.memory.role == 'AlanopolisHarvester') {
+        if(creep.memory.role == 'MarkopolisHarvester' || creep.memory.role == 'StevenopolisHarvester' || creep.memory.role == 'AlanopolisHarvester' || creep.memory.role == 'ThomasopolisHarvester') {
             if(creep.memory.role.toLowerCase().indexOf('steven') > -1){
                 if(creep.ticksToLive < ticksToLiveSt){
                     ticksToLiveSt = creep.ticksToLive;
@@ -185,7 +185,7 @@ module.exports.loop = function () {
             roleHarvester.run(creep);
         }
         
-        if(creep.memory.role == 'MarkopolisBuilder' || creep.memory.role == 'StevenopolisBuilder' || creep.memory.role == 'AlanopolisBuilder') {
+        if(creep.memory.role == 'MarkopolisBuilder' || creep.memory.role == 'StevenopolisBuilder' || creep.memory.role == 'AlanopolisBuilder' || creep.memory.role == 'ThomasopolisBuilder') {
             if(creep.memory.role.toLowerCase().indexOf('steven') > -1){
                 if(creep.ticksToLive < ticksToLiveSt){
                     ticksToLiveSt = creep.ticksToLive;
@@ -206,7 +206,7 @@ module.exports.loop = function () {
             roleBuilder.run(creep);
         }
         
-        if(creep.memory.role == 'MarkopolisTransferer' || creep.memory.role == 'StevenopolisTransferer' || creep.memory.role == 'AlanopolisTransferer') {
+        if(creep.memory.role == 'MarkopolisTransferer' || creep.memory.role == 'StevenopolisTransferer' || creep.memory.role == 'AlanopolisTransferer' || creep.memory.role == 'ThomasopolisTransferer') {
             if(creep.memory.role.toLowerCase().indexOf('steven') > -1){
                 if(creep.ticksToLive < ticksToLiveSt){
                     ticksToLiveSt = creep.ticksToLive;
@@ -226,7 +226,7 @@ module.exports.loop = function () {
             roleTransferer.run(creep);
         }
 
-        if(creep.memory.role == 'MarkopolisMegaTransferer' || creep.memory.role == 'StevenopolisMegaTransferer' || creep.memory.role == 'AlanopolisMegaTransferer') {
+        if(creep.memory.role == 'MarkopolisMegaTransferer' || creep.memory.role == 'StevenopolisMegaTransferer' || creep.memory.role == 'AlanopolisMegaTransferer' || creep.memory.role == 'ThomasopolisMegaTransferer') {
             if(creep.memory.role.toLowerCase().indexOf('steven') > -1){
                 if(creep.ticksToLive < ticksToLiveSt){
                     ticksToLiveSt = creep.ticksToLive;
@@ -274,7 +274,7 @@ module.exports.loop = function () {
             }
             roleMiner.run(creep);
         }
-        if(creep.memory.role == 'defender' || creep.memory.role == 'MarkopolisDefender' || creep.memory.role == 'StevenopolisDefender' || creep.memory.role == 'AlanopolisDefender') {
+        if(creep.memory.role == 'MarkopolisDefender' || creep.memory.role == 'StevenopolisDefender' || creep.memory.role == 'AlanopolisDefender' || creep.memory.role == 'ThomasopolisDefender') {
             if(creep.memory.role.toLowerCase().indexOf('steven') > -1){
                 if(creep.ticksToLive < ticksToLiveSt){
                     ticksToLiveSt = creep.ticksToLive;
@@ -329,7 +329,7 @@ module.exports.loop = function () {
                 //}
             }
         }
-        if(creep.memory.role == 'MarkopolisUpgrader' || creep.memory.role == 'StevenopolisUpgrader' || creep.memory.role == 'AlanopolisUpgrader' ||
+        if(creep.memory.role == 'MarkopolisUpgrader' || creep.memory.role == 'StevenopolisUpgrader' || creep.memory.role == 'AlanopolisUpgrader' || creep.memory.role == 'ThomasopolisUpgrader' ||
            creep.memory.role == 'MarkopolisMegaUpgrader' || creep.memory.role == 'StevenopolisMegaUpgrader' || creep.memory.role == 'AlanopolisMegaUpgrader') {
             if(creep.memory.role.toLowerCase().indexOf('steven') > -1){
                 if(creep.ticksToLive < ticksToLiveSt){

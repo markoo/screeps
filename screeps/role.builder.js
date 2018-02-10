@@ -10,14 +10,14 @@ var roleBuilder = {
             creep.memory.building = true;
             creep.say('build');
         }
-	    /**
+	    
         let room = creep.room.name;
-        if (room == 'W43N1' || room == 'W44N1') {
+        if (room == 'W43N1') {
             creep.say('Remote B');
-            var posInAnotherRoom = new RoomPosition(33, 5, 'W44N1');
+            var posInAnotherRoom = new RoomPosition(33, 3, 'W44N1');
             creep.moveTo(posInAnotherRoom, {visualizePathStyle: {stroke: '#ffffff'}});
         } else 
-        **/
+        
         {
             if (creep.memory.building) {
                 var target = creep.pos.findClosestByRange(FIND_CONSTRUCTION_SITES);

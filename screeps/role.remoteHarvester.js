@@ -9,10 +9,10 @@ var roleRemoteHarvester = {
             creep.memory.transfering = true;
         }
         let room = creep.room.name;
-        if(room!=='W43N2'){
+        if (room !== 'W43N2') {
             var posInAnotherRoom = new RoomPosition(26, 11, 'W43N2');
             creep.moveTo(posInAnotherRoom);
-        }else{
+        } else {
             if (!creep.memory.transfering) {
                 const source = creep.pos.findClosestByRange(FIND_SOURCES_ACTIVE);
                 if (source) {
@@ -30,16 +30,16 @@ var roleRemoteHarvester = {
                 if (creep.transfer(theStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(theStorage);
                 }
-                if(!theStorage){
+                if (!theStorage) {
                     theStorage = creep.pos.findClosestByRange(FIND_MY_STRUCTURES, {
-                    filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_STORAGE);
-                    }
-                });
+                        filter: (structure) => {
+                            return (structure.structureType == STRUCTURE_STORAGE);
+                        }
+                    });
 
-                if (creep.transfer(theStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(theStorage, { visualizePathStyle: { stroke: '#ffffff' } });
-                }
+                    if (creep.transfer(theStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(theStorage, { visualizePathStyle: { stroke: '#ffffff' } });
+                    }
 
                 }
             }

@@ -9,23 +9,26 @@ var roleMegaTransfer = {
             creep.memory.transfering = true;
         }
         if (creep.memory.transfering) {
-            if(creep.room.name != 'W43N1'){
-                var posInAnotherRoom = new RoomPosition(20, 20, 'W43N1');
+            if (creep.room.name != 'W44N3') {
+                var posInAnotherRoom = new RoomPosition(14, 14, 'W44N3');
                 creep.moveTo(posInAnotherRoom);
-            }else{
-                if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+            } else {
+                if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(creep.room.controller);
                 }
             }
         }
         else {
-            if(creep.room.name != 'W43N2'){
-                var posInAnotherRoom = new RoomPosition(20, 20, 'W43N2');
+            if (creep.room.name != 'W43N3' && creep.memory.role == 'MarkopolisMegaTransferer') {
+                var posInAnotherRoom = new RoomPosition(29, 39, 'W43N3');
                 creep.moveTo(posInAnotherRoom);
-            }else{
+            } else if (creep.room.name != 'W43N2' && creep.memory.role == 'StevenopolisMegaTransferer') {
+                var posInAnotherRoom = new RoomPosition(25, 8, 'W43N2');
+                creep.moveTo(posInAnotherRoom);
+            } else {
                 var theStorage = creep.pos.findClosestByRange(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return ( (structure.structureType == STRUCTURE_STORAGE) && structure.store[RESOURCE_ENERGY] > 100000);
+                        return ((structure.structureType == STRUCTURE_STORAGE) && structure.store[RESOURCE_ENERGY] > 500000);
                     }
                 });
                 if (creep.withdraw(theStorage, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
